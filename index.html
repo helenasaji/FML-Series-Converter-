@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malayalam Unicode to FML Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Unicode to FML Converter</h1>
+            <p>Type standard Malayalam below to generate FML-compatible text.</p>
+        </header>
+
+        <div class="converter-wrapper">
+            <!-- Input Section -->
+            <div class="box">
+                <label for="unicodeInput">Malayalam (Unicode)</label>
+                <textarea id="unicodeInput" placeholder="ഇവിടെ മലയാളം ടൈപ്പ് ചെയ്യുക..."></textarea>
+            </div>
+
+            <!-- Output Section -->
+            <div class="box">
+                <label for="fmlOutput">FML Output</label>
+                <textarea id="fmlOutput" readonly placeholder="FML text will appear here..."></textarea>
+                <button id="copyBtn" class="copy-btn">Copy FML Text</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

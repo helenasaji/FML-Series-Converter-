@@ -108,7 +108,6 @@ function convertToFML(unicodeText) {
     return result;
 }
 
-
 // --- DOM MANIPULATION & EVENT LISTENERS ---
 
 const inputArea = document.getElementById('unicodeInput');
@@ -121,10 +120,19 @@ inputArea.addEventListener('input', () => {
     outputArea.value = convertedText;
 });
 
+// UPDATED Copy button functionality for local files
 copyBtn.addEventListener('click', () => {
     if (!outputArea.value) return; 
     
-    navigator.clipboard.writeText(outputArea.value).then(() => {
+    // Select the text inside the text area
+    outputArea.select();
+    outputArea.setSelectionRange(0, 99999); // For mobile device compatibility
+
+    try {
+        // Execute the copy command
+        document.execCommand('copy');
+        
+        // Visual feedback
         const originalText = copyBtn.innerText;
         copyBtn.innerText = 'Copied!';
         copyBtn.style.backgroundColor = '#27ae60'; 
@@ -133,5 +141,12 @@ copyBtn.addEventListener('click', () => {
             copyBtn.innerText = originalText;
             copyBtn.style.backgroundColor = '#3498db'; 
         }, 1500);
-    });
+    } catch (err) {
+        console.error('Oops, unable to copy', err);
+        alert('Failed to copy. Please copy the text manually.');
+    }
+    
+    // Deselect the text so it looks clean afterwards
+    window.getSelection().removeAllRanges();
+});
 });

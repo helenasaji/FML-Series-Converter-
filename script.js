@@ -1,58 +1,56 @@
-// --- COMPLETE FML MAPPING DICTIONARIES ---
+// --- EXACT FML MAPPING FROM REFERENCE ---
 
 // 1. Vowels (സ്വരങ്ങൾ)
 const vowels = {
-    "അ": "A", "ആ": "B", "ഇ": "C", "ഈ": "D", "ഉ": "E", 
-    "ഊ": "F", "ഋ": "G", "എ": "H", "ഏ": "I", "ഐ": "J", 
-    "ഒ": "K", "ഓ": "L", "ഔ": "M", "അം": "Aw", "അഃ": "AX"
+    "അ": "A", "ആ": "B", "ഇ": "C", "ഈ": "Cu", "ഉ": "D", 
+    "ഊ": "Du", "ഋ": "E", "എ": "F", "ഏ": "G", "ഐ": "sF", 
+    "ഒ": "H", "ഓ": "Hm", "ഔ": "Hu", "അം": "Aw", "അഃ": "AX"
 };
 
 // 2. Base Consonants (വ്യഞ്ജനങ്ങൾ)
 const consonants = {
-    "ക": "k", "ഖ": "K", "ഗ": "g", "ഘ": "G", "ങ": "W",
-    "ച": "c", "ഛ": "C", "ജ": "j", "ഝ": "J", "ഞ": "O",
-    "ട": "t", "ഠ": "T", "ഡ": "d", "ഢ": "D", "ണ": "N",
-    "ത": "q", "ഥ": "Q", "ദ": "x", "ധ": "X", "ന": "n",
-    "പ": "p", "ഫ": "P", "ബ": "b", "ഭ": "B", "മ": "m",
-    "യ": "y", "ര": "r", "ല": "l", "വ": "v", "ശ": "S",
-    "ഷ": "z", "സ": "s", "ഹ": "h", "ള": "L", "ഴ": "Z", "റ": "R"
+    "ക": "I", "ഖ": "J", "ഗ": "K", "ഘ": "L", "ങ": "M",
+    "ച": "N", "ഛ": "O", "ജ": "P", "ഝ": "Q", "ഞ": "R",
+    "ട": "S", "ഠ": "T", "ഡ": "U", "ഢ": "V", "ണ": "W",
+    "ത": "X", "ഥ": "Y", "ദ": "Z", "ധ": "[", "ന": "\\",
+    "പ": "]", "ഫ": "^", "ബ": "_", "ഭ": "`", "മ": "a",
+    "യ": "b", "ര": "c", "ല": "e", "വ": "h", "ശ": "i",
+    "ഷ": "j", "സ": "k", "ഹ": "l", "ള": "f", "ഴ": "g", "റ": "d"
 };
 
 // 3. Chillu Letters (ചില്ലക്ഷരങ്ങൾ)
 const chillus = {
-    "ൽ": "Â", "ൾ": "Ã", "ൺ": "Ä", "ൻ": "Å", "ർ": "º"
+    "ർ": "À", "ൽ": "Â", "ൾ": "Ä", "ൻ": "³", "ൺ": "¬", "ൿ": "ൿ"
 };
 
 // 4. Common Conjuncts (കൂട്ടക്ഷരങ്ങൾ)
+// Added ല്ല, ക്ഷ, and ഹ്ന which appeared in your title translations
 const conjuncts = {
-    "ക്ക": "¡", "ക്ഷ": "£", "ക്ല": "¢", "ക്വ": "¤", 
-    "ങ്ങ": "§", "ങ്ക": "¦", "ച്ച": "©", "ഞ്ച": "ª", 
-    "ട്ട": "«", "ണ്ട": "¬", "ണ്ണ": "®", "ത്ത": "¯", 
-    "ദ്ദ": "°", "ദ്ധ": "±", "ന്ത": "²", "ന്ദ": "³", 
-    "ന്ന": "´", "പ്പ": "µ", "മ്പ": "¶", "മ്മ": "·", 
-    "യ്യ": "¸", "ല്ല": "¹", "വ്വ": "º", "ശ്ശ": "»", 
-    "സ്സ": "¼", "ള്ള": "½", "റ്റ": "¾"
+    "ക്ക": "¡", "ച്ച": "¨", "ട്ട": "«", "ത്ത": "¯", "പ്പ": "¸",
+    "മ്മ": "½", "യ്യ": "¿", "വ്വ": "Æ", "ങ്ക": "¦", "ഞ്ച": "©",
+    "ണ്ട": "ï", "ന്ത": "´", "മ്പ": "¼", "ങ്ങ": "§", "ഞ്ഞ": "ª",
+    "ണ്ണ": "®", "ന്ന": "¶", "ക്ല": "¢", 
+    "ല്ല": "Ã", "ക്ഷ": "£", "ഹ്ന": "Ó"
 };
 
-// 5. Left-Side Vowel Signs (Must swap to appear before consonant)
-const leftVowels = {
+// 5. Left-Side Signs (Must swap to appear BEFORE the consonant in FML)
+const leftSigns = {
     "െ": "s", 
-    "േ": "S", 
-    "ൈ": "ss" 
+    "േ": "t", 
+    "ൈ": "ss",
+    "്ര": "{"  // The r-kara symbol (e.g. ക്ര -> {I)
 };
 
 // 6. Right-Side & Bottom Vowel Signs
 const rightVowels = {
-    "ാ": "a", "ി": "i", "ീ": "I", "ു": "u", "ൂ": "U", 
-    "ൃ": "f", "ൊ": "sa", "ോ": "Sa", "ൌ": "O", "ൗ": "O",
-    "്": "v"  
+    "ാ": "m", "ി": "n", "ീ": "o", "ു": "p", "ൂ": "q", 
+    "ൃ": "r", "ൗ": "u", "്": "v"  
 };
 
-// 7. Special Modifiers
+// 7. Right-Side Modifiers
 const modifiers = {
-    "്യ": "y",  
-    "്ര": "r",  
-    "്വ": "v",  
+    "്യ": "y",  // e.g., ക്യ -> Iy
+    "്വ": "z",  // e.g., ക്വ -> Iz
     "ം": "w",   
     "ഃ": "X"    
 };
@@ -63,23 +61,36 @@ const modifiers = {
 function convertToFML(unicodeText) {
     let result = unicodeText;
 
-    // Step 1: Replace multi-character Conjuncts first
+    // Step 0: Pre-process split vowels (ൊ, ോ, ൌ)
+    // We split them into their left and right components so the swap logic handles them perfectly
+    result = result.replace(/ൊ/g, "ൊ"); // e.g., കൊ -> ക + െ + ാ
+    result = result.replace(/ോ/g, "ോ"); // e.g., കോ -> ക + േ + ാ
+    result = result.replace(/ൌ/g, "ൌ"); // e.g., കൌ -> ക + െ + ൗ
+
+    // Step 1: Pre-process Unicode modifier combinations (്ര, ്യ, ്വ)
+    result = result.replace(/്റ/g, "്ര"); // Handle alternative r-kara typing
+    result = result.replace(/്ര/g, "്ര");
+    result = result.replace(/്യ/g, "്യ");
+    result = result.replace(/്വ/g, "്വ");
+
+    // Step 2: Replace multi-character Conjuncts first (ക്ക, ങ്ങ, etc.)
     for (let [uni, fml] of Object.entries(conjuncts)) {
         let regex = new RegExp(uni, "g");
         result = result.replace(regex, fml);
     }
 
-    // Step 2: Handle Left-side vowels (Swap logic)
+    // Step 3: Handle Left-side signs (െ, േ, ൈ, ്ര) - The Swap Logic
+    // This finds a base consonant followed by a left-sign, and swaps their order for FML
     const allBaseKeys = [...Object.keys(consonants), ...Object.keys(conjuncts)].join("|");
-    const leftVowelRegex = new RegExp(`(${allBaseKeys})(െ|േ|ൈ)`, "g");
+    const leftSignRegex = new RegExp(`(${allBaseKeys})(െ|േ|ൈ|്ര)`, "g");
     
-    result = result.replace(leftVowelRegex, function(match, baseChar, vowel) {
-        let fmlVowel = leftVowels[vowel];
+    result = result.replace(leftSignRegex, function(match, baseChar, sign) {
+        let fmlSign = leftSigns[sign];
         let fmlBase = consonants[baseChar] || conjuncts[baseChar];
-        return fmlVowel + fmlBase; 
+        return fmlSign + fmlBase; 
     });
 
-    // Step 3: Replace Chillus, Vowels, Modifiers, and Right Vowels
+    // Step 4: Replace Chillus, Vowels, Modifiers, and Right Vowels
     const directReplacements = { 
         ...chillus, 
         ...vowels, 
@@ -92,7 +103,7 @@ function convertToFML(unicodeText) {
         result = result.replace(regex, fml);
     }
 
-    // Step 4: Replace remaining standalone Consonants
+    // Step 5: Replace remaining standalone Consonants
     for (let [uni, fml] of Object.entries(consonants)) {
         let regex = new RegExp(uni, "g");
         result = result.replace(regex, fml);
@@ -117,20 +128,16 @@ inputArea.addEventListener('input', () => {
 
 // Copy button functionality
 copyBtn.addEventListener('click', () => {
-    if (!outputArea.value) return; // Prevent copying empty text
+    if (!outputArea.value) return; 
     
-    // Modern Clipboard API
     navigator.clipboard.writeText(outputArea.value).then(() => {
-        // Visual feedback
         const originalText = copyBtn.innerText;
         copyBtn.innerText = 'Copied!';
-        copyBtn.style.backgroundColor = '#27ae60'; // Change to green
+        copyBtn.style.backgroundColor = '#27ae60'; 
         
         setTimeout(() => {
             copyBtn.innerText = originalText;
-            copyBtn.style.backgroundColor = '#3498db'; // Revert to blue
+            copyBtn.style.backgroundColor = '#3498db'; 
         }, 1500);
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
     });
 });

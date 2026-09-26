@@ -24,13 +24,13 @@ const chillus = {
 };
 
 // 4. Common Conjuncts (കൂട്ടക്ഷരങ്ങൾ)
-// Added ല്ല, ക്ഷ, and ഹ്ന which appeared in your title translations
 const conjuncts = {
     "ക്ക": "¡", "ച്ച": "¨", "ട്ട": "«", "ത്ത": "¯", "പ്പ": "¸",
     "മ്മ": "½", "യ്യ": "¿", "വ്വ": "Æ", "ങ്ക": "¦", "ഞ്ച": "©",
     "ണ്ട": "ï", "ന്ത": "´", "മ്പ": "¼", "ങ്ങ": "§", "ഞ്ഞ": "ª",
     "ണ്ണ": "®", "ന്ന": "¶", "ക്ല": "¢", 
-    "ല്ല": "Ã", "ക്ഷ": "£", "ഹ്ന": "Ó"
+    "ല്ല": "Ã", "ക്ഷ": "£", "ഹ്ന": "Ó",
+    "ൻ്റ": "â", "ന്റ": "â" 
 };
 
 // 5. Left-Side Signs (Must swap to appear BEFORE the consonant in FML)
@@ -38,7 +38,7 @@ const leftSigns = {
     "െ": "s", 
     "േ": "t", 
     "ൈ": "ss",
-    "്ര": "{"  // The r-kara symbol (e.g. ക്ര -> {I)
+    "്ര": "{"  
 };
 
 // 6. Right-Side & Bottom Vowel Signs
@@ -49,8 +49,8 @@ const rightVowels = {
 
 // 7. Right-Side Modifiers
 const modifiers = {
-    "്യ": "y",  // e.g., ക്യ -> Iy
-    "്വ": "z",  // e.g., ക്വ -> Iz
+    "്യ": "y",  
+    "്വ": "z",  
     "ം": "w",   
     "ഃ": "X"    
 };
@@ -61,26 +61,22 @@ const modifiers = {
 function convertToFML(unicodeText) {
     let result = unicodeText;
 
-    // Step 0: Pre-process split vowels (ൊ, ോ, ൌ)
-    // We split them into their left and right components so the swap logic handles them perfectly
-    result = result.replace(/ൊ/g, "ൊ"); // e.g., കൊ -> ക + െ + ാ
-    result = result.replace(/ോ/g, "ോ"); // e.g., കോ -> ക + േ + ാ
-    result = result.replace(/ൌ/g, "ൌ"); // e.g., കൌ -> ക + െ + ൗ
+    // Step 0: Pre-process split vowels
+    result = result.replace(/ൊ/g, "ൊ"); 
+    result = result.replace(/ോ/g, "ോ"); 
+    result = result.replace(/ൌ/g, "ൌ"); 
 
-    // Step 1: Pre-process Unicode modifier combinations (്ര, ്യ, ്വ)
-    result = result.replace(/്റ/g, "്ര"); // Handle alternative r-kara typing
     result = result.replace(/്ര/g, "്ര");
     result = result.replace(/്യ/g, "്യ");
     result = result.replace(/്വ/g, "്വ");
 
-    // Step 2: Replace multi-character Conjuncts first (ക്ക, ങ്ങ, etc.)
+    // Step 2: Replace Conjuncts
     for (let [uni, fml] of Object.entries(conjuncts)) {
         let regex = new RegExp(uni, "g");
         result = result.replace(regex, fml);
     }
 
-    // Step 3: Handle Left-side signs (െ, േ, ൈ, ്ര) - The Swap Logic
-    // This finds a base consonant followed by a left-sign, and swaps their order for FML
+    // Step 3: Handle Left-side signs
     const allBaseKeys = [...Object.keys(consonants), ...Object.keys(conjuncts)].join("|");
     const leftSignRegex = new RegExp(`(${allBaseKeys})(െ|േ|ൈ|്ര)`, "g");
     
@@ -119,14 +115,12 @@ const inputArea = document.getElementById('unicodeInput');
 const outputArea = document.getElementById('fmlOutput');
 const copyBtn = document.getElementById('copyBtn');
 
-// Listen for typing and convert instantly
 inputArea.addEventListener('input', () => {
     const rawText = inputArea.value;
     const convertedText = convertToFML(rawText);
     outputArea.value = convertedText;
 });
 
-// Copy button functionality
 copyBtn.addEventListener('click', () => {
     if (!outputArea.value) return; 
     

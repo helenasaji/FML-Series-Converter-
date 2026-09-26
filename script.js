@@ -66,6 +66,7 @@ function convertToFML(unicodeText) {
     result = result.replace(/ോ/g, "ോ"); 
     result = result.replace(/ൌ/g, "ൌ"); 
 
+    // Step 1: Pre-process Modifiers
     result = result.replace(/്ര/g, "്ര");
     result = result.replace(/്യ/g, "്യ");
     result = result.replace(/്വ/g, "്വ");
@@ -108,6 +109,7 @@ function convertToFML(unicodeText) {
     return result;
 }
 
+
 // --- DOM MANIPULATION & EVENT LISTENERS ---
 
 const inputArea = document.getElementById('unicodeInput');
@@ -148,5 +150,4 @@ copyBtn.addEventListener('click', () => {
     
     // Deselect the text so it looks clean afterwards
     window.getSelection().removeAllRanges();
-});
 });
